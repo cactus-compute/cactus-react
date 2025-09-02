@@ -117,7 +117,6 @@ public class CactusModule extends NativeCactusSpec {
     cactus.getLoadedLoraAdapters(id, promise);
   }
 
-  // New Multimodal Methods
   @ReactMethod
   public void initMultimodal(double id, String mmprojPath, Boolean useGpu, Promise promise) {
     cactus.initMultimodal(id, mmprojPath, useGpu.booleanValue(), promise);
@@ -148,7 +147,6 @@ public class CactusModule extends NativeCactusSpec {
     cactus.multimodalCompletion(id, prompt, mediaPaths, params, promise);
   }
 
-  // New TTS/Vocoder Methods
   @ReactMethod
   public void initVocoder(double id, String vocoderModelPath, Promise promise) {
     cactus.initVocoder(id, vocoderModelPath, promise);

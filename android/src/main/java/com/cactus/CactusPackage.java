@@ -35,11 +35,11 @@ public class CactusPackage extends TurboReactPackage {
         new ReactModuleInfo(
           CactusModule.NAME,
           CactusModule.NAME,
-          false, // canOverrideExistingModule
-          false, // needsEagerInit
-          true, // hasConstants
-          false, // isCxxModule
-          isTurboModule // isTurboModule
+          false,
+          false,
+          true,
+          false,
+          isTurboModule
         )
       );
       return moduleInfos;

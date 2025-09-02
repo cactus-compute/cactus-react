@@ -78,51 +78,28 @@ public class LlamaContext {
     eventEmitter = reactContext.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class);
     this.id = id;
     this.context = initContext(
-      // String model,
       params.getString("model"),
-      // String chat_template,
       params.hasKey("chat_template") ? params.getString("chat_template") : "",
-      // String reasoning_format,
       params.hasKey("reasoning_format") ? params.getString("reasoning_format") : "none",
-      // boolean embedding,
       params.hasKey("embedding") ? params.getBoolean("embedding") : false,
-      // int embd_normalize,
       params.hasKey("embd_normalize") ? params.getInt("embd_normalize") : -1,
-      // int n_ctx,
       params.hasKey("n_ctx") ? params.getInt("n_ctx") : 512,
-      // int n_batch,
       params.hasKey("n_batch") ? params.getInt("n_batch") : 512,
-      // int n_ubatch,
       params.hasKey("n_ubatch") ? params.getInt("n_ubatch") : 512,
-      // int n_threads,
       params.hasKey("n_threads") ? params.getInt("n_threads") : 0,
-      // int n_gpu_layers, // TODO: Support this
       params.hasKey("n_gpu_layers") ? params.getInt("n_gpu_layers") : 0,
-      // boolean flash_attn,
       params.hasKey("flash_attn") ? params.getBoolean("flash_attn") : false,
-      // String cache_type_k,
       params.hasKey("cache_type_k") ? params.getString("cache_type_k") : "f16",
-      // String cache_type_v,
       params.hasKey("cache_type_v") ? params.getString("cache_type_v") : "f16",
-      // boolean use_mlock,
       params.hasKey("use_mlock") ? params.getBoolean("use_mlock") : true,
-      // boolean use_mmap,
       params.hasKey("use_mmap") ? params.getBoolean("use_mmap") : true,
-      //boolean vocab_only,
       params.hasKey("vocab_only") ? params.getBoolean("vocab_only") : false,
-      // String lora,
       params.hasKey("lora") ? params.getString("lora") : "",
-      // float lora_scaled,
       params.hasKey("lora_scaled") ? (float) params.getDouble("lora_scaled") : 1.0f,
-      // ReadableArray lora_adapters,
       params.hasKey("lora_list") ? params.getArray("lora_list") : null,
-      // float rope_freq_base,
       params.hasKey("rope_freq_base") ? (float) params.getDouble("rope_freq_base") : 0.0f,
-      // float rope_freq_scale
       params.hasKey("rope_freq_scale") ? (float) params.getDouble("rope_freq_scale") : 0.0f,
-      // int pooling_type,
       params.hasKey("pooling_type") ? params.getInt("pooling_type") : -1,
-      // LoadProgressCallback load_progress_callback
       params.hasKey("use_progress_callback") ? new LoadProgressCallback(this) : null
     );
     if (this.context == -1) {
@@ -257,75 +234,40 @@ public class LlamaContext {
     Log.d(NAME, "🚀 ANDROID: About to call doCompletion native method...");
     WritableMap result = doCompletion(
       this.context,
-      // String prompt,
       params.getString("prompt"),
-      // int chat_format,
       params.hasKey("chat_format") ? params.getInt("chat_format") : 0,
-      // String grammar,
       params.hasKey("grammar") ? params.getString("grammar") : "",
-      // String json_schema,
       params.hasKey("json_schema") ? params.getString("json_schema") : "",
-      // boolean grammar_lazy,
       params.hasKey("grammar_lazy") ? params.getBoolean("grammar_lazy") : false,
-      // ReadableArray grammar_triggers,
       params.hasKey("grammar_triggers") ? params.getArray("grammar_triggers") : null,
-      // ReadableArray preserved_tokens,
       params.hasKey("preserved_tokens") ? params.getArray("preserved_tokens") : null,
-      // float temperature,
       params.hasKey("temperature") ? (float) params.getDouble("temperature") : 0.7f,
-      // int n_threads,
       params.hasKey("n_threads") ? params.getInt("n_threads") : 0,
-      // int n_predict,
       params.hasKey("n_predict") ? params.getInt("n_predict") : -1,
-      // int n_probs,
       params.hasKey("n_probs") ? params.getInt("n_probs") : 0,
-      // int penalty_last_n,
       params.hasKey("penalty_last_n") ? params.getInt("penalty_last_n") : 64,
-      // float penalty_repeat,
       params.hasKey("penalty_repeat") ? (float) params.getDouble("penalty_repeat") : 1.00f,
-      // float penalty_freq,
       params.hasKey("penalty_freq") ? (float) params.getDouble("penalty_freq") : 0.00f,
-      // float penalty_present,
       params.hasKey("penalty_present") ? (float) params.getDouble("penalty_present") : 0.00f,
-      // float mirostat,
       params.hasKey("mirostat") ? (float) params.getDouble("mirostat") : 0.00f,
-      // float mirostat_tau,
       params.hasKey("mirostat_tau") ? (float) params.getDouble("mirostat_tau") : 5.00f,
-      // float mirostat_eta,
       params.hasKey("mirostat_eta") ? (float) params.getDouble("mirostat_eta") : 0.10f,
-      // int top_k,
       params.hasKey("top_k") ? params.getInt("top_k") : 40,
-      // float top_p,
       params.hasKey("top_p") ? (float) params.getDouble("top_p") : 0.95f,
-      // float min_p,
       params.hasKey("min_p") ? (float) params.getDouble("min_p") : 0.05f,
-      // float xtc_threshold,
       params.hasKey("xtc_threshold") ? (float) params.getDouble("xtc_threshold") : 0.00f,
-      // float xtc_probability,
       params.hasKey("xtc_probability") ? (float) params.getDouble("xtc_probability") : 0.00f,
-      // float typical_p,
       params.hasKey("typical_p") ? (float) params.getDouble("typical_p") : 1.00f,
-      // int seed,
       params.hasKey("seed") ? params.getInt("seed") : -1,
-      // String[] stop,
       params.hasKey("stop") ? params.getArray("stop").toArrayList().toArray(new String[0]) : new String[0],
-      // boolean ignore_eos,
       params.hasKey("ignore_eos") ? params.getBoolean("ignore_eos") : false,
-      // double[][] logit_bias,
       logit_bias,
-      // float dry_multiplier,
       params.hasKey("dry_multiplier") ? (float) params.getDouble("dry_multiplier") : 0.00f,
-      // float dry_base,
       params.hasKey("dry_base") ? (float) params.getDouble("dry_base") : 1.75f,
-      // int dry_allowed_length,
       params.hasKey("dry_allowed_length") ? params.getInt("dry_allowed_length") : 2,
-      // int dry_penalty_last_n,
       params.hasKey("dry_penalty_last_n") ? params.getInt("dry_penalty_last_n") : -1,
-      // float top_n_sigma,
       params.hasKey("top_n_sigma") ? (float) params.getDouble("top_n_sigma") : -1.0f,
-      // String[] dry_sequence_breakers, when undef, we use the default definition from common.h
       params.hasKey("dry_sequence_breakers") ? params.getArray("dry_sequence_breakers").toArrayList().toArray(new String[0]) : new String[]{"\n", ":", "\"", "*"},
-      // PartialCompletionCallback partial_completion_callback
       new PartialCompletionCallback(
         this,
         params.hasKey("emit_partial_completion") ? params.getBoolean("emit_partial_completion") : false
@@ -369,7 +311,6 @@ public class LlamaContext {
     WritableMap result = embedding(
       this.context,
       text,
-      // int embd_normalize,
       params.hasKey("embd_normalize") ? params.getInt("embd_normalize") : -1
     );
     if (result.hasKey("error")) {
@@ -406,7 +347,6 @@ public class LlamaContext {
     freeContext(context);
   }
 
-  // Multimodal methods
   public boolean initMultimodal(String mmprojPath, boolean useGpu) {
     return initMultimodal(this.context, mmprojPath, useGpu);
   }
@@ -508,7 +448,6 @@ public class LlamaContext {
     return result;
   }
 
-  // TTS/Vocoder methods
   public boolean initVocoder(String vocoderModelPath) {
     return initVocoder(this.context, vocoderModelPath);
   }
@@ -577,7 +516,6 @@ public class LlamaContext {
     Log.d(NAME, "- isAtLeastArmV82: " + isAtLeastArmV82);
     Log.d(NAME, "- isAtLeastArmV84: " + isAtLeastArmV84);
 
-    // TODO: Add runtime check for cpu features
     if (LlamaContext.isArm64V8a()) {
       if (hasDotProd && hasI8mm) {
         Log.d(NAME, "Loading libcactus_v8_2_dotprod_i8mm.so");
@@ -600,8 +538,6 @@ public class LlamaContext {
         System.loadLibrary("cactus_v8");
         loadedLibrary = "cactus_v8";
       }
-      //  Log.d(NAME, "Loading libcactus_v8_7.so with runtime feature detection");
-      //  System.loadLibrary("cactus_v8_7");
     } else if (LlamaContext.isX86_64()) {
       Log.d(NAME, "Loading libcactus_x86_64.so");
       System.loadLibrary("cactus_x86_64");
@@ -657,7 +593,7 @@ public class LlamaContext {
     int n_batch,
     int n_ubatch,
     int n_threads,
-    int n_gpu_layers, // TODO: Support this
+    int n_gpu_layers,
     boolean flash_attn,
     String cache_type_k,
     String cache_type_v,
@@ -756,7 +692,6 @@ public class LlamaContext {
   protected static native void setupLog(NativeLogCallback logCallback);
   protected static native void unsetLog();
 
-  // Multimodal native methods
   protected static native boolean initMultimodal(long contextPtr, String mmprojPath, boolean useGpu);
   protected static native boolean isMultimodalEnabled(long contextPtr);
   protected static native boolean isMultimodalSupportVision(long contextPtr);
@@ -803,7 +738,6 @@ public class LlamaContext {
   );
   protected static native WritableMap tokenize(long contextPtr, String text, String[] mediaPaths);
 
-  // TTS/Vocoder native methods
   protected static native boolean initVocoder(long contextPtr, String vocoderModelPath);
   protected static native boolean isVocoderEnabled(long contextPtr);
   protected static native int getTTSType(long contextPtr);
