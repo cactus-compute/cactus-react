@@ -1,0 +1,38 @@
+
+# === React/Expo ===
+.expo/
+.expo-shared/
+dist/
+web-build/
+coverage/
+.env
+.env.*
+*.tsbuildinfo
+
+# === Node/React Native ===
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+.env
+.env.*
+.expo/
+dist/
+build/
+coverage/*
+*.tsbuildinfo
+lib/
+ios/cactus.xcframework/
+ios/cactus.xcodeproj/
+ios/CMakelists.txt
+android/src/main/jniLibs/
+example/ios/
+example/android/
+
+# === Metro/React Native cache ===
+.cache/
+react-native-packager-cache-*/
+__generated__/
+cpp
