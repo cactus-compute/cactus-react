@@ -43,6 +43,7 @@ export type {
   CactusOAICompatibleMessage,
   JinjaFormattedChatResult,
   NativeAudioDecodeResult,
+  NativeTTSType,
 }
 export * from './remote'
 export {
