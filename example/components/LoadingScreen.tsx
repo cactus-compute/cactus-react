@@ -1,7 +1,11 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-export const LoadingScreen = ({ progress }: { progress: number }) => (
+interface LoadingScreenProps {
+  progress: number
+}
+
+export const LoadingScreen = ({ progress }: LoadingScreenProps) => (
   <View style={styles.container}>
     <Text style={styles.title}>
       Initializing VLM...

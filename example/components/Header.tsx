@@ -1,9 +1,11 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
-export const Header = ({ onClearConversation }: { 
+interface HeaderProps {
   onClearConversation?: () => void;
-}) => (
+}
+
+export const Header = ({ onClearConversation }: HeaderProps) => (
   <View style={styles.container}>
     <Text style={styles.title}>
       Cactus VLM Chat

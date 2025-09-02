@@ -2,7 +2,11 @@ import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { Message } from '../cactus';
 
-export const MessageBubble = ({ message }: { message: Message }) => (
+interface MessageBubbleProps {
+  message: Message
+}
+
+export const MessageBubble = ({ message }: MessageBubbleProps) => (
   <View
     style={[
       styles.container,

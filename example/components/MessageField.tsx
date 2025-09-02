@@ -1,15 +1,7 @@
 import React from 'react';
 import { View, Text, Image, TextInput, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
 
-export const MessageField = ({ 
-  message, 
-  setMessage, 
-  onSendMessage, 
-  isGenerating,
-  attachedImages,
-  onAttachImage,
-  onRemoveImage
-}: { 
+interface MessageFieldProps {
   message: string;
   setMessage: (text: string) => void;
   onSendMessage: () => void;
@@ -17,11 +9,21 @@ export const MessageField = ({
   attachedImages: string[];
   onAttachImage: () => void;
   onRemoveImage: (index: number) => void;
-}) => (
+}
+
+export const MessageField = ({
+  message,
+  setMessage,
+  onSendMessage,
+  isGenerating,
+  attachedImages,
+  onAttachImage,
+  onRemoveImage
+}: MessageFieldProps) => (
   <View style={styles.container}>
     {attachedImages.length > 0 && (
-      <ScrollView 
-        horizontal 
+      <ScrollView
+        horizontal
         style={styles.imagesScrollView}
         showsHorizontalScrollIndicator={false}
       >
@@ -66,8 +68,8 @@ export const MessageField = ({
         style={[
           styles.sendButton,
           {
-            backgroundColor: isGenerating || (!message.trim() && attachedImages.length === 0) 
-              ? '#ccc' 
+            backgroundColor: isGenerating || (!message.trim() && attachedImages.length === 0)
+              ? '#ccc'
               : '#007AFF',
           }
         ]}
