@@ -1,6 +1,6 @@
 ![Cactus Logo](assets/logo.png)
 
-Official React-Native plugin for Cactus, a framework for deploying LLM/VLM/TTS models locally in your app. Requires iOS 12.0+, Android API 24+ and Yarn. For iOS, ensure you have cocoapods or install with `brew install cocoapods`. 
+Official React-Native plugin for Cactus, a framework for deploying LLM/VLM/TTS models locally in your app. Requires iOS 12.0+, Android API 24+ and Yarn. For iOS apps, ensure you have cocoapods or install with `brew install cocoapods`. For Android apps, you need Java 17 installed. Expo is strongly recommended.
 
 ## Resources
 [![cactus](https://img.shields.io/badge/cactus-000000?logo=github&logoColor=white)](https://github.com/cactus-compute/cactus) [![HuggingFace](https://img.shields.io/badge/HuggingFace-FFD21E?logo=huggingface&logoColor=black)](https://huggingface.co/Cactus-Compute/models?sort=downloads) [![Discord](https://img.shields.io/badge/Discord-5865F2?logo=discord&logoColor=white)](https://discord.gg/bNurx3AXTJ) [![Documentation](https://img.shields.io/badge/Documentation-4285F4?logo=googledocs&logoColor=white)](https://cactuscompute.com/docs/react-native)
