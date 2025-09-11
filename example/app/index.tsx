@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { KeyboardAvoidingView, Platform, ScrollView, View, Text, Alert, Button } from 'react-native';
+import { KeyboardAvoidingView, Platform, ScrollView, View, Text, Alert, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { cactus, Message } from '../cactus';
 import { Header, MessageBubble, MessageField, LoadingScreen } from '../components';
@@ -53,7 +53,7 @@ export default function HomeScreen() {
 
     try {
       const response = await cactus.generateResponse(newMessages);
-      
+
       const assistantMessage: Message = {
         role: 'assistant',
         content: response,
@@ -87,8 +87,8 @@ export default function HomeScreen() {
       'Are you sure you want to clear the conversation history?',
       [
         { text: 'Cancel', style: 'cancel' },
-        { 
-          text: 'Clear', 
+        {
+          text: 'Clear',
           style: 'destructive',
           onPress: () => {
             cactus.clearConversation();
@@ -101,7 +101,7 @@ export default function HomeScreen() {
 
   if (!isInitialized) {
     return (
-      <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
+      <SafeAreaView style={styles.container}>
         <Header />
         <LoadingScreen progress={initProgress} />
       </SafeAreaView>
@@ -109,28 +109,28 @@ export default function HomeScreen() {
   }
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
-      <Header 
+    <SafeAreaView style={styles.container}>
+      <Header
         onClearConversation={handleClearConversation}
       />
-      <KeyboardAvoidingView 
-        style={{ flex: 1 }} 
+      <KeyboardAvoidingView
+        style={styles.keyboardAvoidingView}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       >
-        <ScrollView 
-          style={{ flex: 1, padding: 16 }}
-          contentContainerStyle={{ flexGrow: 1, justifyContent: 'flex-end' }}
+        <ScrollView
+          style={styles.scrollView}
+          contentContainerStyle={styles.scrollViewContent}
         >
           {messages.map((msg, index) => (
             <MessageBubble key={index} message={msg} />
           ))}
           {isGenerating && (
-            <View style={{ padding: 16, alignItems: 'center' }}>
-              <Text style={{ color: '#666' }}>Generating response...</Text>
+            <View style={styles.generatingContainer}>
+              <Text style={styles.generatingText}>Generating response...</Text>
             </View>
           )}
         </ScrollView>
-        
+
         <MessageField
           message={message}
           setMessage={setMessage}
@@ -144,3 +144,28 @@ export default function HomeScreen() {
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  keyboardAvoidingView: {
+    flex: 1,
+  },
+  scrollView: {
+    flex: 1,
+    padding: 16,
+  },
+  scrollViewContent: {
+    flexGrow: 1,
+    justifyContent: 'flex-end',
+  },
+  generatingContainer: {
+    padding: 16,
+    alignItems: 'center',
+  },
+  generatingText: {
+    color: '#666',
+  },
+});
