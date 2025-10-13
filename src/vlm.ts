@@ -118,11 +118,12 @@ export class CactusVLM {
 
     CactusVLM._initCache.set(key, initPromise);
 
-    const result = await initPromise;
-    if (result.error) {
-      CactusVLM._initCache.delete(key); 
+    try {
+      const result = await initPromise;
+      return result;
+    } finally {
+      CactusVLM._initCache.delete(key);
     }
-    return result;
   }
 
   async completion(
