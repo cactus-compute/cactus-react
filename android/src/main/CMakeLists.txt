@@ -121,6 +121,7 @@ function(build_library target_name cpu_flags)
     target_link_options(${target_name} PRIVATE -Wl,--gc-sections)
     target_link_options(${target_name} PRIVATE -Wl,--exclude-libs,ALL)
     target_link_options(${target_name} PRIVATE -flto)
+    target_link_options(${target_name} PRIVATE -Wl,-z,max-page-size=16384)
 
 endfunction()
 
