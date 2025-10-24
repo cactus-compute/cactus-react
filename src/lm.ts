@@ -131,10 +131,12 @@ export class CactusLM {
 
     CactusLM._initCache.set(key, initPromise);
 
-    const result = await initPromise;
-    // Cache only while in-flight; never cache resolved instances
-    CactusLM._initCache.delete(key);
-    return result;
+    try {
+      const result = await initPromise;
+      return result;
+    } finally {
+      CactusLM._initCache.delete(key);
+    }
   }
 
   completion = async (
